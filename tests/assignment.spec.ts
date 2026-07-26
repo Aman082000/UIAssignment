@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import fs from 'fs';
 
 
 test('Navigate to books store application', async ({ page }) => {
@@ -45,9 +46,17 @@ test('Navigate to books store application', async ({ page }) => {
   await expect(page.getByText("O'Reilly Media")).toBeVisible();
 
   // Print Title, Author and Publisher into a file.
-  const resultRow = await page.locator('tr').nth(0).innerText();
-  console.log(resultRow);
+  const title = await page.locator('tr').nth(1).locator('td').nth(1).innerText();
+  const author = await page.locator('tr').nth(1).locator('td').nth(2).innerText();
+  const publisher = await page.locator('tr').nth(1).locator('td').nth(3).innerText();
+  console.log(`${title} ${author} ${publisher}`);
 
+  const data = `Title: ${title}
+  Author: ${author}
+  Publisher: ${publisher}`
+
+  fs.writeFileSync('searchResult.txt', data);
+  console.log('Data writtent to searchResult.txt');
   
   // Click on log out
 
