@@ -56,7 +56,7 @@ The automated test performs the following steps:
 Clone the repository:
 
 ```bash
-git clone 
+git clone https://github.com/Aman082000/UIAssignment.git
 ```
 
 Move into the project directory:
