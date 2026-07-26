@@ -159,6 +159,9 @@ Publisher: O'Reilly Media
 ### Test Execution
 <img width="1588" height="1002" alt="image" src="https://github.com/user-attachments/assets/b7e63c14-1945-4001-944b-e43f7176aba0" />
 
+### Playwright HTML Report
+<img width="1919" height="854" alt="image" src="https://github.com/user-attachments/assets/cac3ee5f-bd12-4561-ac26-21d912191f7d" />
+
 ---
 
 ## Author
