@@ -22,18 +22,42 @@ test('Navigate to books store application', async ({ page }) => {
   await page.locator('#login').click();
 
   // Upon successful login, Validate username and logout button.
-  const usernameVisible = await page.locator('userName-value').textContent();
+  const usernameVisible = await page.locator('#userName-value').textContent();
   expect(usernameVisible).toEqual(username);
 
+  const logoutButtonVisible = await page.getByRole('button', {name: "Logout"}).isVisible();
+  expect(logoutButtonVisible).toBeTruthy()
+
+  //Click on bookstore button
+  await page.locator('#item-2 a[href="/books"]').filter({hasText: "Book Store"}).click({ force: true });
+
+  // Search "Learning JavaScript Design Patterns"
+  const bookToSearch = 'Learning JavaScript Design Patterns';
+  await page.getByPlaceholder('Type to search').fill(bookToSearch);
+
+  const filledInputText = await page.getByPlaceholder('Type to search').inputValue();
+  expect(filledInputText).toEqual(bookToSearch);
+
+  // Validate the search result to contain this book.
+  const searchResultVisible = await page.getByRole('link',{name: 'Learning JavaScript Design Patterns'}).isVisible();
+  expect(searchResultVisible).toBeTruthy();
+  await expect(page.locator('td', {hasText: "Addy Osmani"})).toBeVisible();
+  await expect(page.getByText("O'Reilly Media")).toBeVisible();
+
+  // Print Title, Author and Publisher into a file.
+  const resultRow = await page.locator('tr').nth(0).innerText();
+  console.log(resultRow);
+
   
-  
+  // Click on log out
+
+
 });
 
 
 
 
-// Click on bookstore button
-// Search "Learning JavaScript Design Patterns"
-// Validate the search result to contain this book.
-// Print Title, Author and Publisher into a file.
-// Click on log out
+
+
+
+
