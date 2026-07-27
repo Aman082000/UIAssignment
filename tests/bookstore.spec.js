@@ -38,7 +38,7 @@ test('Navigate to books store application', async ({ page }) => {
 
   // Validate the search result to contain this book.
   const searchResultVisible = await page.getByRole('link',{name: 'Learning JavaScript Design Patterns'}).isVisible();
-  expect(searchResultVisible).toBeTruthy();
+  await expect(searchResultVisible).toBeTruthy();
   await expect(page.locator('td', {hasText: "Addy Osmani"})).toBeVisible();
   await expect(page.getByText("O'Reilly Media")).toBeVisible();
 
